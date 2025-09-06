@@ -8,6 +8,9 @@ const cookieParser = require('cookie-parser');
 const connectToDb = require('./db/db');
 const userRoutes = require('./routes/user.route');
 const captainRoutes = require('./routes/captain.route');
+const mapRoutes = require('./routes/maps.routes');
+const rideRoutes = require('./routes/ride.routes');
+
 
 const app = express();
 
@@ -18,6 +21,9 @@ connectToDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); // ✅ fixed
+app.use('/maps', mapRoutes);
+app.use('/rides', rideRoutes);
+
 
 app.use(cors());
 
